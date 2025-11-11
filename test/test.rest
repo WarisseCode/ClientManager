@@ -1,0 +1,36 @@
+### Enregistrer un device (serveur + token FCM)
+POST https://clientmanagerapi.onrender.com/devices/register
+Content-Type: application/json
+{
+  "email": "martial@clientmanager.com",
+  "fcmToken": "FAKE_TOKEN_EXEMPLE",
+  "platform": "android"
+}
+
+###
+
+### Récupérer les restaurants associés à un serveur
+GET https://clientmanagerapi.onrender.com/servers/martial@clientmanager.com/restaurants
+
+###
+
+### Récupérer les commandes du jour pour un serveur
+GET https://clientmanagerapi.onrender.com/servers/martial@clientmanager.com/2e63d750-a381-4f35-b218-600c684408e7/orders
+
+###
+
+### Récupérer les commandes d'une date spécifique
+GET https://clientmanagerapi.onrender.com/servers/martial@clientmanager.com/2e63d750-a381-4f35-b218-600c684408e7/orders?date=2025-10-01
+
+###
+
+### Simuler webhook : commande validée
+POST https://clientmanagerapi.onrender.com/webhooks/order-status
+Content-Type: application/json
+x-webhook-secret: 8c8ac3e89f4fdfcdc9ddee93a34257769128d3a76a76bf6d528fdec9379bdcda
+
+{
+  "orderId": "211c4a7e-574e-4a78-854a-0a0f821fce5a",
+  "status": "VALIDATE",
+  "tableId": "ac640a91-390e-4a8a-bda9-3d31982deddd"
+}
